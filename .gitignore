@@ -1,0 +1,14 @@
+# Compiled source #
+###################
+*.pyc
+
+
+# Gdrive generated files #
+###################
+desktop.ini
+dataset_clean.csv
+
+# Generated folders #
+###################
+__pycache__/
+.dist/
