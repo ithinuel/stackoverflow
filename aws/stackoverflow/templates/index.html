@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+  <form class="form-inline" method="POST" action="{{ url_for('result') }}">
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon">Selection question:</span>
+        <select class="form-control" id="sel1" name="question_select">
+          {% for question in list_questions %}
+          <option>{{ question }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+    <br></br>
+    <button type="submit" class="btn btn-success">Estimer!</button>
+  </form>
+</div>
+{% endblock %}

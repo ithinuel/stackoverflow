@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Texte</th>
+                <th>Tags(StackOverflow)</th>
+                <th>Tag (1)</th>
+                <th>Tag (2)</th>
+                <th>Tag (3)</th>
+            </tr>
+        </thead>
+        <tbody>
+                <td>{{ result.title }}</td>
+                <td>{{ result.body }}</td>
+                <td>{{ result.tags }}</td>
+                <td>{{ result.tag_0 }}</td>
+                <td>{{ result.tag_1 }}</td>
+                <td>{{ result.tag_2 }}</td>
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
