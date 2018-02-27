@@ -1,0 +1,6 @@
+{
+    "python.pythonPath": "python3",
+    "python.linting.pylintArgs": ["--errors-only"],
+    "python.linting.pep8Enabled": true,
+    "python.linting.pep8Path": "pep8"
+}
