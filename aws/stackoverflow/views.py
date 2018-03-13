@@ -14,6 +14,7 @@ from flask import Flask, render_template, url_for, request, jsonify
 import json
 import numpy as np
 from sklearn.externals import joblib
+import dill as pickle
 import __main__
 from .utils import StackOverflow
 
@@ -21,15 +22,19 @@ app = Flask(__name__)
 app.config.from_object('config')
 """app: Flask Application Object.
 """
-model_object = joblib.load(
-        os.path.join('stackoverflow', 'static', 'model.pkl'))
+model_object = pickle.load(
+        open(os.path.join('stackoverflow', 'static', 'model.pkl'), 'rb'))
 """model_object: Load Model from static folder.
 """
-vectorizer_object = joblib.load(
-        os.path.join('stackoverflow', 'static', 'vectorizer.pkl'))
+vectorizer_object = pickle.load(
+        open(os.path.join('stackoverflow', 'static', 'vectorizer.pkl'), 'rb'))
 """vectorizer_object: Load Model from static folder.
 """
-myStackOverflow_object = StackOverflow(model_object, vectorizer_object)
+mapping_object = pickle.load(
+        open(os.path.join('stackoverflow', 'static', 'mapping.pkl'), 'rb'))
+"""vectorizer_object: Load Model from static folder.
+"""
+myStackOverflow_object = StackOverflow(model_object, vectorizer_object, mapping_object)
 """myStackOverflow_object: StackOverflow Class Object.
 """
 

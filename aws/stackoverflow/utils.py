@@ -20,9 +20,9 @@ class StackOverflow:
     """Model class definition.
     """
 
-    def __init__(self, model, vectorizer):
+    def __init__(self, model, vectorizer, mapping):
         tp = pd.read_csv(
-            os.path.join('stackoverflow', 'static', 'dataset_clean2.csv'),
+            os.path.join('stackoverflow', 'static', 'dataset_test.csv'),
             sep='\t', chunksize=1000)
         self.df_test = pd.concat(tp, ignore_index=True)
         """df_test: Loaded test dataset.
@@ -32,6 +32,9 @@ class StackOverflow:
         """
         self.vectorizer = vectorizer
         """vectorizer: Loaded vectorizer.
+        """
+        self.mapping = mapping
+        """mapping: Loaded mapping.
         """
 
     def getQuestions(self):
@@ -58,34 +61,14 @@ class StackOverflow:
         data['tag_0'] = tag_list[0]
         data['tag_1'] = tag_list[1]
         data['tag_2'] = tag_list[2]
+        data['tag_3'] = tag_list[3]
+        data['tag_4'] = tag_list[4]
         return data
 
     # _________________________ PRIVATE FUNCTIONS _____________________________
     def __get_tags_from_topic(self, topic):
         """Return 3 top tags from topic index.
         """
-        if (topic < 0) or (topic > 19):
-            return ['None', 'None', 'None']
-        tag_mapping = [
-            ['android', 'plugin', 'php'],
-            ['html', 'script', 'js'],
-            ['np', 'array', 'python'],
-            ['android', 'google', 'https'],
-            ['array', 'np', 'json'],
-            ['py', 'python', 'request'],
-            ['js', 'angular', 'node'],
-            ['server', 'request', 'http'],
-            ['view', 'array', 'python'],
-            ['android', 'layout', 'java'],
-            ['script', 'html', 'js'],
-            ['java', 'http', 'android'],
-            ['array', 'node', 'google'],
-            ['tf', 'np', 'python'],
-            ['np', 'plt', 'array'],
-            ['view', 'np', 'array'],
-            ['request', 'json', 'http'],
-            ['array', 'server', 'request'],
-            ['array', 'react', 'request'],
-            ['php', 'database', 'array']
-        ]
-        return tag_mapping[topic]
+        if (topic < 0) or (topic > 39):
+            return ['None', 'None', 'None', 'None', 'None']
+        return self.mapping[topic]
